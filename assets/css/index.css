@@ -68,18 +68,9 @@ select {
     justify-items: center;
 }
 
-.fake {
+.Unit {
     width: 130px;
     height: 130px;
-    border-radius: 50%;
-    background-color: #f90;  
-}
-
-.fake2 {
-    width: 130px;
-    height: 130px;
-    border-radius: 10px;
-    background-color: #f90;
 }
 
 .result {
