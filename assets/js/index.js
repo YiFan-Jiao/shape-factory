@@ -76,11 +76,25 @@ class Shape {
         const shapeDiv = document.createElement("div");
         shapeDiv.className = "Unit";
         shapeDiv.style.backgroundColor = this.#color;
+        
+        if (n<5) {
+            shapeDiv.style.gridRowStart = '4';
+        }
+        if (n>4 && n<10) {
+            shapeDiv.style.gridRowStart = '3';
+        }
+        if (n>9 && n<15) {
+            shapeDiv.style.gridRowStart = '2';
+        }
+        if (n>14 && n<19) {
+            shapeDiv.style.gridRowStart = '1';
+        }
+        
+
         if(this.#name === 'circle') {
             shapeDiv.style.borderRadius = "50%";
         }
-        //bigCenter.appendChild(shapeDiv);
-        bigCenter.parentNode.insertBefore(shapeDiv,bigCenter)
+        bigCenter.appendChild(shapeDiv);
 
         // I can only call the getInfo method here, because shapeDiv is created 
         // dynamically. If it is called outside, it will show that there is no 
