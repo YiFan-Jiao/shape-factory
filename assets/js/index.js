@@ -90,7 +90,6 @@ class Shape {
             shapeDiv.style.gridRowStart = '1';
         }
         
-
         if(this.#name === 'circle') {
             shapeDiv.style.borderRadius = "50%";
         }
