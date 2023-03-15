@@ -4,24 +4,36 @@ const createBtn = document.querySelector('.create-button');
 const shapeName = document.querySelector('.shape-select');
 const colorName = document.querySelector('.color-select');
 const bigCenter = document.querySelector('.big-center');
+const unit = document.querySelector('.Unit');
+const result = document.querySelector('.result');
 
+let n = 0;
 const shapeArray = [];
 
-createBtn.addEventListener('click', () => {
-    const shape = new Shape(shapeName.value,colorName.value);
+createBtn.addEventListener('click', funcclick);
+
+function funcclick() {
+    const shape = new Shape(shapeName.value,colorName.value,n);
+    
+    // I don't know why it is required to create an array and save the object 
+    // in the array. I haven't used this array after here.
     shapeArray.push(shape);
     shape.createShape();
-});
-
-
+    n++;
+    if(n === 20) {
+        createBtn.removeEventListener('click', funcclick)
+    }
+}
 
 class Shape {
     #name;
     #color;
+    numIndex;
 
-    constructor(name,color) {
+    constructor(name,color,numIndex) {
         this.#name = name;
         this.#color = color;
+        this.numIndex = numIndex;
     }
 
     set setname(name) {
@@ -40,8 +52,8 @@ class Shape {
         return this.#color
     }
 
-    getInfo(divname) {
-        return `${divname}: ${this.#color} ${this.#name}`
+    getInfo() {
+        return `${this.numIndex + 1}: ${this.#color} ${this.#name}`
     }
 
     createShape() {
@@ -52,5 +64,12 @@ class Shape {
             shapeDiv.style.borderRadius = "50%";
         }
         bigCenter.appendChild(shapeDiv);
+
+        // I can only call the getInfo method here, because shapeDiv is created 
+        // dynamically. If it is called outside, it will show that there is no 
+        // dom object.
+        shapeDiv.addEventListener('click', () => {
+            result.innerHTML = this.getInfo();
+        });
     }
 }
