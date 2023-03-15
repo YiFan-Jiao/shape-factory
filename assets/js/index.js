@@ -53,7 +53,23 @@ class Shape {
     }
 
     getInfo() {
-        return `${this.numIndex + 1}: ${this.#color} ${this.#name}`
+        let unitColor = '';
+        if(this.#color === '#09F') {
+            unitColor = 'blue';
+        }
+        if(this.#color === '#9f0') {
+            unitColor = 'green';
+        }
+        if(this.#color === '#f90') {
+            unitColor = 'orange';
+        }
+        if(this.#color === '#f09') {
+            unitColor = 'pink';
+        }
+        if(this.#color === '#90f') {
+            unitColor = 'purple';
+        }
+        return `Unit ${this.numIndex + 1}: ${unitColor} ${this.#name}`
     }
 
     createShape() {
@@ -63,7 +79,8 @@ class Shape {
         if(this.#name === 'circle') {
             shapeDiv.style.borderRadius = "50%";
         }
-        bigCenter.appendChild(shapeDiv);
+        //bigCenter.appendChild(shapeDiv);
+        bigCenter.parentNode.insertBefore(shapeDiv,bigCenter)
 
         // I can only call the getInfo method here, because shapeDiv is created 
         // dynamically. If it is called outside, it will show that there is no 
